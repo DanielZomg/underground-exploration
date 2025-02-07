@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Underground Rome: Time Echoes</title>
+    <link rel="stylesheet" href="styling.css">
+</head>
+<body>
+    <div id="torch-light" class="torch-light"></div>
+
+    <div class="scene">
+        <h1 class="location-header">Roman Catacombs - Present Day</h1>
+        <div id="underground-image"></div>
+
+        <p>Your torch beam cuts through the darkness of Rome's underground passages. The air is thick with history, and your footsteps echo off ancient stones. Suddenly, the temperature drops dramatically...</p>
+
+        <p class="ghost-text">'Salve viator... Welcome, traveller.'</p>
+
+        <p>A translucent figure materialises before you -- the unmistakable visage of Julius Caesar, his form ghostly and ethereal.</p>
+
+        <p class="ghost-text">'Over two millennia have passed, yet Rome's secrets persist.
+            I've watched countless souls pass through these tunnels, but you... you might be worthy of this challenge.
+            I used a special code in life to protect my messages.
+            This particular one... it speaks of events that came to pass, yet remains encrypted.
+            Decode it, and you may learn more about the shadows of history.'</p>
+
+        <p>The spectral figure gestures to some ancient writing on the wall:</p>
+        <p style="font-family: 'Courier New'; letter-spacing: 2px; color: #ff6b6b;">
+            EUXWXV LV PHHWLQJ WKH VHQDWRUV DW GDZQ
+        </p>
+    </div>
+
+    <div class="input-area">
+        <input type="text" id="message-input" placeholder="Enter your decoded message">
+        <button onclick="checkAnswer()">Submit</button>
+        <button id="hint-button" onclick="showHint()">Need a hint?</button>
+    </div>
+
+    <div class="inventory">
+        🔦 Flashlight
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
