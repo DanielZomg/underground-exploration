@@ -39,6 +39,26 @@
         🔦 Torch
     </div>
 
+    <div class="notepad">
+        <h2>Decryption Notepad</h2>
+
+        <div class="cipher-section">
+            <h3>Encrypted Message:</h3>
+            <p id="encrypted-message">EUXWXV LV PHHWLQJ WKH VHQDWRUV DW GDZQ</p>
+            <div id="cipher-inputs" class="cipher-inputs"></div>
+        </div>
+
+        <div class="mapping-section">
+            <h3>Alphabet Mapping:</h3>
+            <div id="alphabet-mapping" class="alphabet-mapping"></div>
+        </div>
+
+        <button onclick="applyMapping()">Apply Mapping</button>
+        <button onclick="resetNotepad()">Reset</button>
+
+        <div id="decrypted-output" class="decrypted-output"></div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
