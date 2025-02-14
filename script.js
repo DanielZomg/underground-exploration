@@ -140,7 +140,7 @@ function resetNotepad() {
     document.getElementById('decrypted-output').textContent = '';
 }
 
-// Initialize notepad on page load
+// Initialise notepad on page load
 window.onload = function() {
     createCipherInputs();
     createAlphabetMapping();
