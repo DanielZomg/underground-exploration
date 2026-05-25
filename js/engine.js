@@ -8,11 +8,9 @@ import {
     reset as resetJournal,
 } from './journal.js';
 
-import * as caesar from './widgets/caesar.js';
-import * as substitution from './widgets/substitution.js';
-import * as vigenere from './widgets/vigenere.js';
+import * as paris from './widgets/paris.js';
 
-const widgets = { caesar, substitution, vigenere };
+const widgets = { paris };
 
 const sceneRoot = document.getElementById('scene-root');
 const journalRoot = document.getElementById('journal-root');
@@ -164,6 +162,7 @@ function handleSolved(scene, { silent = false } = {}) {
     sceneRoot.appendChild(banner);
 }
 
-// Boot.
-const startId = getCurrentSceneId() || firstSceneId();
+// Boot. If the saved scene id no longer exists in this branch's scene set, fall back.
+const savedId = getCurrentSceneId();
+const startId = (savedId && getScene(savedId)) ? savedId : firstSceneId();
 loadScene(startId);

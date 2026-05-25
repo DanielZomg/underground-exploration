@@ -344,9 +344,94 @@ button:disabled { opacity: 0.5; cursor: not-allowed; }
 }
 .solved-banner p { margin: 0 0 10px 0; color: #d8efd2; }
 
+/* ----- Paris / Fersen ----- */
+.paris-stage + .paris-stage {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px dashed var(--panel-edge);
+}
+
+.fersen-cells {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 14px 0;
+}
+.fersen-space {
+    width: 12px;
+    align-self: stretch;
+}
+.fersen-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 4px;
+    border-radius: 4px;
+    background: #0d0d10;
+    border: 1px solid #2a2a30;
+    min-width: 32px;
+}
+.fersen-cell.enciphered { border-color: rgba(255, 107, 107, 0.5); }
+.fersen-cell.clear { opacity: 0.6; }
+.fersen-cipher-letter {
+    font-family: var(--mono);
+    font-size: 0.95rem;
+    color: var(--accent);
+}
+.fersen-cell.clear .fersen-cipher-letter { color: var(--muted); }
+.fersen-key-letter {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--ghost);
+    height: 0.9rem;
+}
+.fersen-input {
+    width: 26px;
+    padding: 3px 2px;
+    text-align: center;
+    background: #1a1a1f;
+    border: 1px solid #34343c;
+    color: var(--ink);
+    font-family: var(--mono);
+    border-radius: 3px;
+    text-transform: uppercase;
+}
+.fersen-input:focus { outline: none; border-color: var(--ghost); }
+.fersen-input:disabled { opacity: 0.7; }
+
+.fersen-table {
+    margin-top: 12px;
+    padding: 12px;
+    background: #0d0d10;
+    border: 1px solid var(--panel-edge);
+    border-radius: 4px;
+    overflow-x: auto;
+}
+.fersen-table.hidden { display: none; }
+.fersen-table-grid {
+    border-collapse: collapse;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--muted);
+}
+.fersen-table-grid th,
+.fersen-table-grid td {
+    padding: 2px 4px;
+    text-align: center;
+    border: 1px solid #1f1f23;
+    min-width: 18px;
+}
+.fersen-table-grid th { color: var(--ghost); }
+.fersen-table-grid tr.row-used { background: rgba(255, 107, 107, 0.12); }
+.fersen-table-grid tr.row-used th:first-child {
+    color: var(--accent);
+    font-weight: bold;
+}
+
 @media (max-width: 600px) {
     .scene { margin: 16px; padding: 18px 18px; }
-    .mapping-grid { grid-template-columns: repeat(7, 1fr); }
-    .alberti-rings { width: 240px; height: 240px; }
-    .alberti-ring.inner { inset: 32px; }
+    .fersen-cell { min-width: 28px; }
+    .fersen-input { width: 22px; }
 }
+

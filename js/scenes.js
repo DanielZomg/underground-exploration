@@ -1,101 +1,43 @@
-// Scene data. Each scene names a widget; engine.js mounts it.
-// Adding an era = appending an entry here.
+// Paris / Marie-Antoinette branch: one dense scene, two-stage puzzle.
+// (The 3-era pedagogical arc lives on the main branch.)
 
 export const scenes = [
     {
-        id: 'rome-caesar',
-        location: 'Roman Catacombs (Present Day)',
+        id: 'paris-antoinette',
+        location: 'Paris Carrières (1793)',
         intro: [
-            "Your torch beam cuts through the darkness of Rome's underground passages. The air is thick with dust and old smoke; your footsteps return to you off the limestone.",
-            "The temperature drops. A figure resolves out of the cold: translucent, draped, unmistakable. Julius Caesar.",
+            "You step into a small chamber off the main gallery. The walls are pale, almost glowing in your lamplight: chalk and limestone, dense with the chalk-white outlines of creatures dead for a hundred million years. The air smells of damp stone and lamp-oil.",
+            "On a low shelf, someone has left a folded note, the ink fresh. The wax seal bears a swan.",
+            "The air cools. A woman in court dress materialises, lace at her throat, her hair gone half-grey.",
         ],
         ghostLines: [
-            "Salve, viator. Two millennia under stone, and still I am bothered by unread mail.",
-            "In life I used a simple trick to keep my couriers' messages mine. Each letter slid forward by the same count. Decode it and I'll tell you why it mattered.",
+            "Bonsoir. You will forgive me if I do not waste words; my time above ended quickly, and my time below is borrowed.",
+            "I have left a letter, but I do not trust the walls. The key to reading it is a fossil, and the fossil is a key.",
         ],
-        widget: 'caesar',
-        ciphertext: 'EUXWXV LV PHHWLQJ WKH VHQDWRUV DW GDZQ',
-        plaintext: 'BRUTUS IS MEETING THE SENATORS AT DAWN',
-        // Shift used to encrypt: +3 (Caesar's classical shift). Widget rotates a dial; not revealed up front.
-        hints: [
-            "Caesar's ghost: 'The trick is uniform. Every letter moves by the same step.'",
-            "Caesar's ghost: 'Try the dial. You're looking for the step that turns this into a tongue you can read.'",
-        ],
-        history: {
-            title: "Caesar's Shift (~50 BCE)",
-            body: "Suetonius records that Caesar enciphered military correspondence by shifting each letter three places forward. The cipher is trivial to a modern eye, but in a world where most couriers were illiterate and most interceptors barely literate, it was good enough. Its real legacy is conceptual: a <em>key</em> (the shift count) and an <em>algorithm</em> (the shift itself), separable in a way earlier code-talk wasn't.",
-        },
-        onSolvedLines: [
-            "Caesar nods slowly. 'Yes. The warning Artemidorus tried to give me. I let the scroll go unread.'",
-            "He gestures into the dark. 'Deeper, then. Others kept their letters longer than I did.'",
-        ],
-    },
+        widget: 'paris',
 
-    {
-        id: 'baghdad-alkindi',
-        location: 'Cistern Beneath Baghdad (c. 850 CE)',
-        intro: [
-            "The catacombs unspool into a vaulted cistern. Brick columns disappear into still water. Your reflection trails behind you.",
-            "A scholar sits cross-legged on a dry ledge, ink-stained fingers turning the pages of a bound manuscript.",
+        // --- Stage 1: fossil riddle ---
+        riddle: "The key is a fossil, and the fossil is a key.",
+        fossilAnswer: 'BELEMNITE',
+        fossilAccepted: ['belemnite', 'belemnites', 'belemnoidea'],
+        fossilHints: [
+            "A creature of the ancient seas, long since stone.",
+            "Named for the Greek word for dart or arrow. Country folk once called them thunderbolts, fallen from the sky.",
+            "Bullet-shaped, the colour of honey or pewter. Hold one up and you will see why I call it a key.",
         ],
-        ghostLines: [
-            "Peace, traveller. I am al-Kindi. I have written a small book on reading what others hoped you would not.",
-            "This message uses no simple shift. Each letter has been replaced by another, by no pattern you can guess from the key alone.",
-            "But count the letters. Look at how often each one appears. The language itself betrays the cipher.",
-        ],
-        widget: 'substitution',
-        // Designed so plaintext-E (most common in English) maps to cipher T, giving the tallest bar.
-        // Injective plain->cipher map; widget builds the inverse for validation & live decode.
-        keyMapPlainToCipher: {
-            A: 'R', B: 'Z', C: 'F', D: 'L', E: 'T', F: 'D', G: 'V', H: 'Q',
-            I: 'X', J: 'U', K: 'C', L: 'H', M: 'K', N: 'N', O: 'P', P: 'W',
-            Q: 'O', R: 'A', S: 'B', T: 'Y', U: 'M', V: 'I', W: 'J', X: 'S',
-            Y: 'G', Z: 'E',
-        },
-        plaintext: 'TELL TO PARIS THE KEEP REMAINS THE SAFEST HIDING IS IN THE CATACOMBS',
-        ciphertext: 'YTHH YP WRAXB YQT CTTW ATKRXNB YQT BRDTBY QXLXNV XB XN YQT FRYRFPKZB',
-        hints: [
-            "al-Kindi: 'In English, the letter E is by far the most common. Look at the tallest bar; that is likely E.'",
-            "al-Kindi: 'A common three-letter word ending in E is THE. Find a recurring three-letter group ending in your candidate for E.'",
-        ],
-        history: {
-            title: "al-Kindi and Frequency Analysis (~850 CE)",
-            body: "Abu Yusuf al-Kindi, working in the House of Wisdom in Baghdad, wrote <em>Risāla fī Istikhrāj al-Mu'ammā</em> ('A Manuscript on Deciphering Cryptographic Messages'). It is the earliest known description of frequency analysis. His insight: the cipher hides the <em>letters</em>, but not the <em>language</em>. Every language has a fingerprint of letter frequencies, and substitution preserves it. After al-Kindi, the monoalphabetic cipher was no longer secure, a fact European cryptographers wouldn't catch up to for another six centuries.",
-        },
-        onSolvedLines: [
-            "al-Kindi smiles. 'You see. The letters lied; the language told the truth.'",
-            "He waves at a passage opening west. 'But you will find Europe took its time learning this. They paid for it.'",
-        ],
-    },
 
-    {
-        id: 'paris-alberti',
-        location: 'Paris Carrières (1467)',
-        intro: [
-            "Limestone passages narrow. The walls bear soot-marks from older lamps than yours. You step into a low chamber where a Florentine, dressed against the cold, is bent over a pair of brass disks pinned together at the center.",
-            "He looks up. 'Ah, another one who's read al-Kindi.'",
-        ],
-        ghostLines: [
-            "I am Leon Battista Alberti. I read the Arab too. He broke our ciphers, so I built one he could not break.",
-            "Watch: I do not use one alphabet. I use many. Each letter of the keyword tells me which alphabet to use for the next letter of the message.",
-            "Decode this with the keyword you have been given. Rotate the inner ring so the keyword letter sits beneath A on the outer ring; then the cipher letter, read on the inner, points to the plaintext letter on the outer.",
-        ],
-        widget: 'vigenere',
-        keyword: 'LUMEN',
-        // Vigenère: cipher = (plain + key) mod 26. Computed; verified by widget on mount.
-        plaintext: 'BELOW THE LAMPS THE CIPHER ENDURES',
-        ciphertext: 'MYXSJ EBQ PNXJE XUP WUTUPL QRQFLQW',
-        hints: [
-            "Alberti: 'The first letter of the keyword shifts the first letter of the ciphertext. The second, the second. When the keyword ends, begin it again.'",
-            "Alberti: 'For each ciphertext letter: turn the inner ring so this position's keyword letter sits under A. Then the cipher letter on the inner ring points to the plaintext letter above it.'",
-        ],
+        // --- Stage 2: Fersen cipher ---
+        // Roundtrip-verified at widget mount: fersenEncode(plaintext, fossilAnswer) === ciphertext.
+        plaintext: 'I LOVE YOU MADLY MY DEAR',
+        ciphertext: 'J LSVP YSU YAQLG MR DIAS',
+
         history: {
-            title: "Alberti, the Cipher Disk, and Vigenère (1467 / 1586)",
-            body: "Leon Battista Alberti described the first known polyalphabetic cipher in his 1467 essay <em>De componendis cifris</em>, alongside a brass cipher disk that mechanised the alphabet-swap. A century later, Blaise de Vigenère systematised the idea with a repeating keyword, the cipher that now bears his name. The crucial property: because the substitution <em>changes</em> letter by letter, al-Kindi's frequency analysis flattens out. The 'tall bar for E' disappears. Vigenère's cipher was called <em>le chiffre indéchiffrable</em> for three centuries before Babbage and Kasiski found cracks in the 1850s.",
+            title: "The Cipher of Marie-Antoinette and Axel von Fersen",
+            body: "Marie-Antoinette and the Swedish count Axel von Fersen corresponded in a polyalphabetic cipher whose distinguishing trick was enciphering only every <em>other</em> letter, leaving the rest in clear. Some of the letters were preserved by Fersen's family; some were redacted in black ink by a 19th-century descendant. In 2021, a team at the French National Centre for Scientific Research used multispectral imaging to read beneath the redactions, recovering passages of unmistakable tenderness that the historical record had erased. The cipher itself was solid for its day: <em>every other</em> letter enciphered under a 22-row table, the keyword changing per position, meant that even a determined adversary needed both the table and the keyword to read a word.",
         },
         onSolvedLines: [
-            "Alberti spins the disk idly. 'Good. You see why the bars went flat: each letter has a different alphabet behind it. al-Kindi's tool, useless.'",
-            "He stands. 'There is more below. Machines that turn the disk for you, faster than any hand. But that is a longer walk than I have time for tonight.'",
+            "She reads, more to herself than to you. 'Adieu. I sent so many of these. He kept them all.'",
+            "She turns, and the lamplight goes through her. 'Take the note. Take the fossil. Some things outlast the people who carried them.'",
         ],
     },
 ];
@@ -108,8 +50,6 @@ export function firstSceneId() {
     return scenes[0].id;
 }
 
-export function nextSceneId(currentId) {
-    const i = scenes.findIndex(s => s.id === currentId);
-    if (i < 0 || i >= scenes.length - 1) return null;
-    return scenes[i + 1].id;
+export function nextSceneId(_currentId) {
+    return null;
 }
