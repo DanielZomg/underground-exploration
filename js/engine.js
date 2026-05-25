@@ -38,7 +38,7 @@ function renderJournal() {
             div.className = 'journal-entry';
             div.innerHTML = `<h3></h3><p></p>`;
             div.querySelector('h3').textContent = e.title;
-            div.querySelector('p').textContent = e.body;
+            div.querySelector('p').innerHTML = e.body;
             journalRoot.appendChild(div);
         }
     }
